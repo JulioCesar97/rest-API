@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const tourSchema = new mongoose.Schema(
+const circuitSchema = new mongoose.Schema(
   {
-    tours_id: {
+    circuits_id: {
       type: String,
       unique: true,
       required: true,
@@ -18,31 +18,27 @@ const tourSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    content: {
+    output: {
       type: String,
       required: true,
     },
-    placetovisit: {
+    service: {
       type: String,
       required: true,
     },
-    languageshandled: {
+    pax: {
       type: String,
       required: true,
     },
-    availability: {
-      type: String,
-      required: true,
-    },
-    includes: {
-      type: String,
-      required: true,
-    },
-    doesnotinclude: {
+    destinations: {
       type: String,
       required: true,
     },
     images: {
+      type: Object,
+      required: true,
+    },
+    itinerary: {
       type: Object,
       required: true,
     },
@@ -60,4 +56,4 @@ const tourSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Tours", tourSchema);
+module.exports = mongoose.model("Circuits", circuitSchema);

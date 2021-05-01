@@ -9,6 +9,7 @@ app.use(express.json());
 
 //ROUTES
 app.use("/api", require("./routes/tours.routes"));
+app.use("/api", require("./routes/circuits.routes"));
 
 app.get("/", (req, res) => {
   res.json({ msg: "Welcome to the API" });

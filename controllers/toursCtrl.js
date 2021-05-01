@@ -10,19 +10,19 @@ const toursCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
-  createTour: async (req, res) => {
+  createTours: async (req, res) => {
     try {
       const {
         tours_id,
         title,
         price,
-        description,
         content,
+        placetovisit,
+        languageshandled,
+        availability,
         includes,
         doesnotinclude,
-        location,
         images,
-        itinerary,
         category,
       } = req.body;
 
@@ -35,17 +35,60 @@ const toursCtrl = {
         tours_id,
         title: title.toLowerCase(),
         price,
-        description,
         content,
+        placetovisit,
+        languageshandled,
+        availability,
         includes,
         doesnotinclude,
-        location,
         images,
-        itinerary,
         category,
       });
       await newTour.save();
       res.json({ msg: "Created a tour." });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  deleteTours: async (req, res) => {
+    try {
+      await Tours.findByIdAndDelete(req.params.id);
+      res.json({ msg: "Deleted a Tour" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  updateTours: async (req, res) => {
+    try {
+      const {
+        title,
+        price,
+        content,
+        placetovisit,
+        languageshandled,
+        availability,
+        includes,
+        doesnotinclude,
+        images,
+        category,
+      } = req.body;
+
+      await Tours.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          title: title.toLowerCase(),
+          price,
+          content,
+          placetovisit,
+          languageshandled,
+          availability,
+          includes,
+          doesnotinclude,
+          images,
+          category,
+        }
+      );
+      res.json({ msg: "Updated a Tour." });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
