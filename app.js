@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //ROUTES
+app.use("/api", require("./routes/category.routes"));
 app.use("/api", require("./routes/tours.routes"));
 app.use("/api", require("./routes/circuits.routes"));
 
